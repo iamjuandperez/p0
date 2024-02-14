@@ -66,5 +66,6 @@ def separador (cadena : str ):
             lexer(i)
     
 
-separador ("(defun (2345 dfsghtuturjjtrj) fdfdfd name 3)")
-print(tokens)
+def iniciar(cadena):
+    separador(cadena)
+    return tokens
