@@ -1,41 +1,59 @@
-def lexer(exp):
-    tokens = []
-    for char in exp:
+tokens = []
+
+def lexer(char):
+    
+    
         if char == '(':
-            tokens.append('left', char)
+            tokens.append('left')
         elif char == ')':
-            tokens.append('right', char)
+            tokens.append('right')
         elif char == '=':
-            tokens.append('equal', char)
+            tokens.append('equal')
         elif char == 'defvar':
-            tokens.append('defvar', char)
+            tokens.append('defvar')
         elif char == 'name':
-            tokens.append('name', char)
+            tokens.append('name')
         elif char == 'skip':
-            tokens.append('skip', char)
+            tokens.append('skip')
         elif char == 'turn':
-            tokens.append('turn', char)
+            tokens.append('turn')
         elif char == ':left':
-            tokens.append('tLeft', char)
+            tokens.append('tLeft')
         elif char == ':right':
-            tokens.append('tRight', char)
+            tokens.append('tRight')
         elif char == ':around':
             tokens.append('tAround')
         elif char == 'face':
-            tokens.append('face', char)
+            tokens.append('face')
         elif char == ':north':
-            tokens.append('fNorth', char)
+            tokens.append('fNorth')
         elif char == ':south':
-            tokens.append('fSouth', char)
+            tokens.append('fSouth')
         elif char == ':east':
-            tokens.append('fEast', char)
+            tokens.append('fEast')
         elif char == ':west':
-            tokens.append('fWest', char)
+            tokens.append('fWest')
         elif char == 'turn':
-            tokens.append('turn', char)
+            tokens.append('turn')
         elif char == 'left':
-            tokens.append('tLeft', char)
+            tokens.append('tLeft')
         elif char == 'right':
-            tokens.append('tRight', char)
+            tokens.append('tRight')
         elif char == 'around':
             tokens.append('around')    
+        elif char == 'defun':
+            tokens.append('defun')
+
+        return tokens
+        
+def separador (cadena : str ):
+    cadena_separada = cadena.split(" ")
+    for i in cadena_separada:
+        if "(" in i:
+            pos = i.find("(")
+            lexer(i[pos])
+            j = i[pos+1 : len(i)]
+            lexer(j)
+    
+
+separador ("(defun name n)")
