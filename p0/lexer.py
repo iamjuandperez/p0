@@ -2,49 +2,50 @@ tokens = []
 
 def lexer(char):
     
-    
-        if char == '(':
+    if char.isdigit():
+        tokens.append("number")
+    elif char == '(':
             tokens.append('left')
-        elif char == ')':
+    elif char == ')':
             tokens.append('right')
-        elif char == '=':
+    elif char == '=':
             tokens.append('equal')
-        elif char == 'defvar':
+    elif char == 'defvar':
             tokens.append('defvar')
-        elif char == 'name':
-            tokens.append('name')
-        elif char == 'skip':
+    elif char == 'skip':
             tokens.append('skip')
-        elif char == 'turn':
+    elif char == 'turn':
             tokens.append('turn')
-        elif char == ':left':
+    elif char == ':left':
             tokens.append('tLeft')
-        elif char == ':right':
+    elif char == ':right':
             tokens.append('tRight')
-        elif char == ':around':
+    elif char == ':around':
             tokens.append('tAround')
-        elif char == 'face':
+    elif char == 'face':
             tokens.append('face')
-        elif char == ':north':
+    elif char == ':north':
             tokens.append('fNorth')
-        elif char == ':south':
+    elif char == ':south':
             tokens.append('fSouth')
-        elif char == ':east':
+    elif char == ':east':
             tokens.append('fEast')
-        elif char == ':west':
+    elif char == ':west':
             tokens.append('fWest')
-        elif char == 'turn':
+    elif char == 'turn':
             tokens.append('turn')
-        elif char == 'left':
+    elif char == 'left':
             tokens.append('tLeft')
-        elif char == 'right':
+    elif char == 'right':
             tokens.append('tRight')
-        elif char == 'around':
+    elif char == 'around':
             tokens.append('around')    
-        elif char == 'defun':
+    elif char == 'defun':
             tokens.append('defun')
+    else:
+            tokens.append('varName')
 
-        return tokens
+    return tokens
         
 def separador (cadena : str ):
     cadena_separada = cadena.split(" ")
@@ -54,6 +55,16 @@ def separador (cadena : str ):
             lexer(i[pos])
             j = i[pos+1 : len(i)]
             lexer(j)
+            
+        elif ")" in i:
+            pos = i.find(")")
+            j = i[0:pos]
+            lexer(j)
+            lexer(i[pos])
+            
+        else:
+            lexer(i)
     
 
-separador ("(defun name n)")
+separador ("(defun (2345 dfsghtuturjjtrj) fdfdfd name 3)")
+print(tokens)
