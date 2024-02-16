@@ -15,6 +15,12 @@ class Stack:
             return self.tokens.pop()
         else:
             raise IndexError("The stack is empty")
+        
+    def next_token(self):
+        if not self.is_empty() and len(self.tokens) > 1:
+            return self.tokens[-1]
+        else:
+            return "No next item"
 
     def peek(self):
         if not self.is_empty():
@@ -36,7 +42,7 @@ class Parser:
         self.tokens = array_to_stack(tokens)
         self.tok_idx = 1
         self.advance()
-        self.defun()
+        self.turn()
 
     def advance(self):
 
@@ -63,13 +69,15 @@ class Parser:
     def skip(self):
         if self.current_tok != 'numer':
             print('no')
+        self.advance()
         if self.current_tok  != 'right':
             print('no')
     
     def turn(self):
         odds = ['tLeft', 'tRight', 'tAround']
-
-    
+        
+        
+        
 def run (text):
     lexer = lex.iniciar(text)
     
