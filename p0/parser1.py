@@ -110,9 +110,40 @@ class Parser:
         self.advance()
         if self.current_tok != 'right':
             print('no')
-
+            
+    def pick(self):
+        if self.current_tok != 'object':
+            print('no')
+        self.advance()
+        if self.current_tok != 'number':
+            print('no')
+        self.advance()
+        if self.current_tok != 'right':
+            print('no')
+    
+    def movedir(self):
+        if self.current_tok != 'number':
+            print('no')
+        odds = ['tLeft', 'tRight', 'tFront', 'tBack']
+        self.advance
+        if self.current_tok not in odds:
+            print('no')
+        self.advance()
+        if self.current_tok != 'right':
+            print('no')
+    
+    def moveFace(self):
+        if self.current_tok != 'number':
+            print('no')
+        self.advance()
+        direcc = ['fNorth', 'fSouth', 'fEast', 'fWest']
+        if self.current_tok not in direcc:
+            print('no')
+        self.advance()
+        if self.current_tok != 'right':
+            print('no')
         
-        
+       
 def run (text):
     lexer = lex.iniciar(text)
     
