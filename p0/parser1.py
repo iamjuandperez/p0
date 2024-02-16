@@ -73,14 +73,35 @@ class Parser:
         if self.current_tok  != 'right':
             print('no')
     
-    def turn(self):
-        odds = ['tLeft', 'tRight', 'tAround']
+    def rundirs(self):
+        odds = ['tFront', 'tRight', 'tLeft', 'tBack']
+        if self.current_tok not in odds:
+            print('no')
+        self.advance()
+        while  self.tokens.next_token() in odds:
+            print(self.tokens.next_token())
+            self.advance()
+        self.advance()
+        if self.current_tok != 'right':
+            print('no')
+    
     
     def face(self):
         direcc = ['fNorth', 'fSouth', 'fEast', 'fWest']
         if self.current_tok not in direcc:
             print('no')
-        
+        self.advance()
+        if self.current_tok != 'right':
+            print('no')
+    
+    def turn(self):
+        odds = ['tLeft', 'tRight', 'tAround']
+        if self.current_tok not in odds:
+            print('no')
+        self.advance()
+        if self.current_tok != 'right':
+            print('no')
+
         
         
 def run (text):
