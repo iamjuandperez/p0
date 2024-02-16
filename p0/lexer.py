@@ -42,6 +42,12 @@ def lexer(char):
             tokens.append('around')    
     elif char == 'defun':
             tokens.append('defun')
+    elif char == ':balloons' or char == ':chips':
+            tokens.append('object')
+    elif char == ':front':
+            tokens.append('tFront')
+    elif char == ':back':
+            tokens.append('tBack')
     else:
             tokens.append('varName')
 

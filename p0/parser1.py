@@ -85,7 +85,6 @@ class Parser:
         if self.current_tok != 'right':
             print('no')
     
-    
     def face(self):
         direcc = ['fNorth', 'fSouth', 'fEast', 'fWest']
         if self.current_tok not in direcc:
@@ -97,6 +96,16 @@ class Parser:
     def turn(self):
         odds = ['tLeft', 'tRight', 'tAround']
         if self.current_tok not in odds:
+            print('no')
+        self.advance()
+        if self.current_tok != 'right':
+            print('no')
+            
+    def put(self):
+        if self.current_tok != 'object':
+            print('no')
+        self.advance()
+        if self.current_tok != 'number':
             print('no')
         self.advance()
         if self.current_tok != 'right':
