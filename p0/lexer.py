@@ -48,6 +48,14 @@ def lexer(char):
             tokens.append('tFront')
     elif char == ':back':
             tokens.append('tBack')
+    elif char == ':up':
+           tokens.append('tUp')
+    elif char == ':down':
+           tokens.append('tDown')
+    elif char == 'run-dirs':
+           tokens.append('rundirs')
+    elif char == 'move':
+           tokens.append('move')
     else:
             tokens.append('varName')
 

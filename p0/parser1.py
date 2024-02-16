@@ -42,7 +42,7 @@ class Parser:
         self.tokens = array_to_stack(tokens)
         self.tok_idx = 1
         self.advance()
-        self.face()
+        self.run()
 
     def advance(self):
 
@@ -71,15 +71,14 @@ class Parser:
             print('no')
         self.advance()
         if self.current_tok  != 'right':
-            print('no')
+            print('nop')
     
     def rundirs(self):
-        odds = ['tFront', 'tRight', 'tLeft', 'tBack']
+        odds = ['tUp', 'tRight', 'tLeft', 'tDown']
         if self.current_tok not in odds:
             print('no')
         self.advance()
         while  self.tokens.next_token() in odds:
-            print(self.tokens.next_token())
             self.advance()
         self.advance()
         if self.current_tok != 'right':
@@ -110,44 +109,46 @@ class Parser:
         self.advance()
         if self.current_tok != 'right':
             print('no')
-            
-    def pick(self):
-        if self.current_tok != 'object':
-            print('no')
-        self.advance()
-        if self.current_tok != 'number':
-            print('no')
-        self.advance()
-        if self.current_tok != 'right':
-            print('no')
-    
-    def movedir(self):
-        if self.current_tok != 'number':
-            print('no')
-        odds = ['tLeft', 'tRight', 'tFront', 'tBack']
-        self.advance
-        if self.current_tok not in odds:
-            print('no')
-        self.advance()
-        if self.current_tok != 'right':
-            print('no')
-    
-    def moveFace(self):
-        if self.current_tok != 'number':
-            print('no')
-        self.advance()
-        direcc = ['fNorth', 'fSouth', 'fEast', 'fWest']
-        if self.current_tok not in direcc:
-            print('no')
-        self.advance()
-        if self.current_tok != 'right':
-            print('no')
+
+    def run (self):
+        while not self.tokens.is_empty():
+           
+            if self.current_tok != 'left':
+               print ('no')
+            self.advance()
+            if self.current_tok == 'defun':
+               self.advance()
+               self.defun()
+            elif self.current_tok == 'move':
+                self.advance()
+                self.move()
+            elif self.current_tok == 'skip':
+                self.advance()
+                self.skip()
+            elif self.current_tok == 'rundirs':
+                self.advance()
+                self.rundirs()
+            elif self.current_tok == 'face':
+                self.advance()
+                self.face()
+            elif self.current_tok ==  'turn':
+                self.advance()
+                self.turn()
+            elif self.current_tok == 'put':
+                self.advance()
+                self.put()
+            else: 
+                print('no')
+            if not self.tokens.is_empty():
+               self.advance()
+               
+               
         
-       
+        
 def run (text):
     lexer = lex.iniciar(text)
     
     parser = Parser(lexer)
 
-run("face :south)")
+run("(defun var 5) (skip 1) (move 34) (run-dirs :lsgdrherherhsgfeft :up :left :down :right)")
     
