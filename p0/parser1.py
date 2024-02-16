@@ -42,7 +42,7 @@ class Parser:
         self.tokens = array_to_stack(tokens)
         self.tok_idx = 1
         self.advance()
-        self.turn()
+        self.face()
 
     def advance(self):
 
@@ -67,7 +67,7 @@ class Parser:
             print('no')
 
     def skip(self):
-        if self.current_tok != 'numer':
+        if self.current_tok != 'number':
             print('no')
         self.advance()
         if self.current_tok  != 'right':
@@ -75,6 +75,11 @@ class Parser:
     
     def turn(self):
         odds = ['tLeft', 'tRight', 'tAround']
+    
+    def face(self):
+        direcc = ['fNorth', 'fSouth', 'fEast', 'fWest']
+        if self.current_tok not in direcc:
+            print('no')
         
         
         
@@ -83,5 +88,5 @@ def run (text):
     
     parser = Parser(lexer)
 
-run("peludo 3)")
+run("face :south)")
     
