@@ -41,9 +41,11 @@ class Parser:
     def __init__(self, tokens):
         self.tokens = array_to_stack(tokens)
         self.tok_idx = 1
+       
         self.advance()
         self.run()
-
+        print(tokens)
+        
     def advance(self):
 
         self.current_tok = self.tokens.pope()
@@ -147,8 +149,7 @@ class Parser:
         
 def run (text):
     lexer = lex.iniciar(text)
-    
-    parser = Parser(lexer)
+    Parser(lexer)
 
-run("(defun var 5) (skip 1) (move 34) (run-dirs :lsgdrherherhsgfeft :up :left :down :right)")
+run("(defun var 5)   (skip 1)                                      (move 34)(run-dirs :left :up :left :down :right)")
     

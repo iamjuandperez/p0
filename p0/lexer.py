@@ -61,25 +61,26 @@ def lexer(char):
 
     return tokens
         
-def separador (cadena : str ):
-    cadena_separada = cadena.split(" ")
-    for i in cadena_separada:
-        if "(" in i:
-            pos = i.find("(")
-            lexer(i[pos])
-            j = i[pos+1 : len(i)]
-            lexer(j)
-            
-        elif ")" in i:
-            pos = i.find(")")
-            j = i[0:pos]
-            lexer(j)
-            lexer(i[pos])
-            
-        else:
-            lexer(i)
+def separador (texto : str ):
+    
+    
+    parentesis = ['(', ')']
+    for caracter in parentesis:
+        if caracter not in ['(', ')']:
+            texto = texto.replace(caracter, ' ')
+    
+
+    texto = texto.replace('(', ' ( ').replace(')', ' ) ')
+    
+    
+    palabras = texto.split()
+    
+    return palabras
+
     
 
 def iniciar(cadena):
-    separador(cadena)
+    tok = separador(cadena)
+    for i in tok:
+       lexer(i)
     return tokens
