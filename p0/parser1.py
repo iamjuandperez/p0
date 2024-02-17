@@ -142,6 +142,10 @@ class Parser:
         self.advance()
         if self.current_tok != 'right':
             print('no')
+    
+    def nulo(self):
+        if self.current_tok != 'right':
+            print('no')
 
     def run (self):
         while not self.tokens.is_empty():
@@ -179,6 +183,9 @@ class Parser:
             elif self.current_tok == 'moveFace':
                 self.advance()
                 self.moveFace
+            elif self.current_tok == 'null':
+                self.advance()
+                self.nulo()    
             else: 
                 print('no')
             if not self.tokens.is_empty():
