@@ -54,21 +54,21 @@ class Parser:
         if self.current_tok != 'varName':
             print('no')
         self.advance()
-        if self.current_tok  != 'number':
+        if self.current_tok  not in ['number', 'constant']:
             print('no')
         self.advance()
         if self.current_tok  != 'right':
             print('no')
 
     def move(self):
-        if self.current_tok != 'number' and self.current_tok != 'constant':
+        if self.current_tok not in ['number', 'constant']:
             print ('no')
         self.advance()
         if self.current_tok  != 'right':
             print('no')
 
     def skip(self):
-        if self.current_tok != 'number' and self.current_tok != 'constant':
+        if self.current_tok not in ['number', 'constant']:
             print('no')
         self.advance()
         if self.current_tok  != 'right':
@@ -105,7 +105,7 @@ class Parser:
         if self.current_tok != 'object':
             print('no')
         self.advance()
-        if self.current_tok != 'number':
+        if self.current_tok not in ['number', 'constant']:
             print('no')
         self.advance()
         if self.current_tok != 'right':
@@ -115,14 +115,14 @@ class Parser:
         if self.current_tok != 'object':
             print('no')
         self.advance()
-        if self.current_tok != 'number':
+        if self.current_tok not in ['number', 'constant']:
             print('no')
         self.advance()
         if self.current_tok != 'right':
             print('no')
     
     def movedir(self):
-        if self.current_tok != 'number':
+        if self.current_tok not in ['number', 'constant']:
             print('no')
         odds = ['tLeft', 'tRight', 'tFront', 'tBack']
         self.advance()
@@ -133,7 +133,7 @@ class Parser:
             print('no')
     
     def moveFace(self):
-        if self.current_tok != 'number':
+        if self.current_tok not in ['number', 'constant']:
             print('no')
         self.advance()
         direcc = ['fNorth', 'fSouth', 'fEast', 'fWest']
@@ -171,7 +171,7 @@ class Parser:
             if self.current_tok != 'object':
                 print('no')
             self.advance()
-            if self.current_tok != 'number':
+            if self.current_tok not in ['number', 'constant']:
                 print('no')
             self.advance()
             if self.current_tok != 'right':
