@@ -146,6 +146,43 @@ class Parser:
     def nulo(self):
         if self.current_tok != 'right':
             print('no')
+    
+    def conditional(self):
+        if self.current_tok != 'left':
+            print('no')
+        self.advance()
+        
+        if self.current_tok == 'cFacing' or self.current_tok == 'cCanmove':
+            direcc = ['fNorth', 'fSouth', 'fEast', 'fWest']
+            self.advance()
+            if self.current_tok not in direcc:
+                print('no')
+            self.advance()
+            if self.current_tok != 'right':
+                print('no')
+                
+        elif self.current_tok == 'cBlock':
+            pass
+        
+        elif self.current_tok == 'cCanput':
+            self.advance()
+            if self.current_tok != 'object':
+                print('no')
+            self.advance()
+            if self.current_tok != 'number':
+                print('no')
+            self.advance()
+            if self.current_tok != 'right':
+                print('no')
+        
+        elif self.current_tok == 'cIszero':
+            pass    
+        
+        elif self.current_tok == 'not':
+            self.advance()
+            self.conditional()
+        else:
+            print('no')
 
     def run (self):
         while not self.tokens.is_empty():
@@ -186,6 +223,11 @@ class Parser:
             elif self.current_tok == 'null':
                 self.advance()
                 self.nulo()    
+            elif self.current_tok == 'conditional':
+                self.advance()
+                self.conditional()
+                self.advance()
+                self.run()
             else: 
                 print('no')
             if not self.tokens.is_empty():
@@ -198,5 +240,5 @@ def run (text):
     lexer = lex.iniciar(text)
     Parser(lexer)
 
-run("(defun var 5)   (skip 1)                                      (move 34)(run-dirs :left :up :left :down :right)")
+run("(if (can-move? :north) (move-dir 1 :north) (null))")
     

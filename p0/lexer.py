@@ -63,7 +63,23 @@ def lexer(char):
     elif char == 'move-face':
             tokens.append('moveFace')
     elif char == 'null':
-            tokens.append('null')            
+            tokens.append('null') 
+    elif char == 'if':
+            tokens.append('conditional')
+    elif char == 'facing?':
+            tokens.append('cFacing')
+    elif char == 'blocked?':
+            tokens.append('cBlock') 
+    elif char == 'can-put?':
+            tokens.append('cCanput')
+    elif char == 'can-pick?':
+            tokens.append('cCanpick')
+    elif char == 'can-move?':
+            tokens.append('cCanmove')
+    elif char == 'isZero?':
+            tokens.append('cIszero')
+    elif char == 'not':
+            tokens.append('not')                                                
     else:
             tokens.append('varName')
 
