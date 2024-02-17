@@ -44,7 +44,6 @@ class Parser:
        
         self.advance()
         self.run()
-        print(tokens)
         
     def advance(self):
 
@@ -171,6 +170,15 @@ class Parser:
             elif self.current_tok == 'put':
                 self.advance()
                 self.put()
+            elif self.current_tok == 'pick':
+                self.advance()
+                self.put()
+            elif self.current_tok == 'moveDir':
+                self.advance()
+                self.movedir()
+            elif self.current_tok == 'moveFace':
+                self.advance()
+                self.moveFace
             else: 
                 print('no')
             if not self.tokens.is_empty():
