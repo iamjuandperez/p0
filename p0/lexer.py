@@ -56,6 +56,14 @@ def lexer(char):
            tokens.append('rundirs')
     elif char == 'move':
            tokens.append('move')
+    elif char == 'pick':
+            tokens.append('pick')
+    elif char == 'move-dir':
+            tokens.append('moveDir')
+    elif char == 'move-face':
+            tokens.append('moveFace')
+    elif char == 'null':
+            tokens.append('null')            
     else:
             tokens.append('varName')
 
