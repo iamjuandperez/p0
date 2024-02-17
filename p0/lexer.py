@@ -83,9 +83,7 @@ def lexer(char):
     elif char in ['Dim', 'myXpos', 'myYpos', 'myChips',
                   'myBalloons', 'balloonsHere', 'ChipsHere',
                   'Spaces']:
-            tokens.append('constant')      
-    elif char == '=':
-            tokens.append('equal')                                                 
+            tokens.append('constant')                                                      
     else:
             tokens.append('varName')
 

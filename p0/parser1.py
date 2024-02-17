@@ -197,6 +197,16 @@ class Parser:
         self.advance()
         if self.current_tok != 'right':
             print('no')
+    
+    def defvar(self):
+        if self.current_tok != 'varName':
+            print('no')
+        self.advance()
+        if self.current_tok not in ['number', 'constant']:
+            print('no')
+        self.advance()
+        if self.current_tok != 'right':
+            print('no')
 
     def run (self):
         while not self.tokens.is_empty():
@@ -207,6 +217,9 @@ class Parser:
             if self.current_tok == 'defun':
                self.advance()
                self.defun()
+            if self.current_tok == 'defvar':
+                self.advance()
+                self.defvar()
             elif self.current_tok == 'move':
                 self.advance()
                 self.move()
@@ -257,5 +270,5 @@ def run (text):
     lexer = lex.iniciar(text)
     Parser(lexer)
 
-run("(if (can-move? :north) (move-dir 1 :north) (null))")
+run("(defvar rotate 3)")
     
