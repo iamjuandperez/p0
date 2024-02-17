@@ -61,14 +61,14 @@ class Parser:
             print('no')
 
     def move(self):
-        if self.current_tok != 'number':
+        if self.current_tok != 'number' and self.current_tok != 'constant':
             print ('no')
         self.advance()
         if self.current_tok  != 'right':
             print('no')
 
     def skip(self):
-        if self.current_tok != 'number':
+        if self.current_tok != 'number' and self.current_tok != 'constant':
             print('no')
         self.advance()
         if self.current_tok  != 'right':
@@ -152,7 +152,7 @@ class Parser:
             print('no')
         self.advance()
         
-        if self.current_tok == 'cFacing' or self.current_tok == 'cCanmove':
+        if self.current_tok in ['cFacing', 'cCanmove']:
             direcc = ['fNorth', 'fSouth', 'fEast', 'fWest']
             self.advance()
             if self.current_tok not in direcc:
@@ -162,9 +162,11 @@ class Parser:
                 print('no')
                 
         elif self.current_tok == 'cBlock':
-            pass
+            self.advance()
+            if self.current_tok != 'right':
+                print('no')
         
-        elif self.current_tok == 'cCanput':
+        elif self.current_tok in ['cCanput', 'cCanpick']:
             self.advance()
             if self.current_tok != 'object':
                 print('no')

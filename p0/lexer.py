@@ -79,7 +79,11 @@ def lexer(char):
     elif char == 'isZero?':
             tokens.append('cIszero')
     elif char == 'not':
-            tokens.append('not')                                                
+            tokens.append('not') 
+    elif char in ['Dim', 'myXpos', 'myYpos', 'myChips',
+                  'myBalloons', 'balloonsHere', 'ChipsHere',
+                  'Spaces']:
+            tokens.append('constant')                                                   
     else:
             tokens.append('varName')
 
