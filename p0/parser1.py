@@ -190,6 +190,13 @@ class Parser:
             self.conditional()
         else:
             print('no')
+        
+    def VariableCrea(self):
+        if self.current_tok != 'varName':
+             print('no')
+        self.advance()
+        if self.current_tok != 'right':
+            print('no')
 
     def run (self):
         while not self.tokens.is_empty():
@@ -235,6 +242,9 @@ class Parser:
                 self.conditional()
                 self.advance()
                 self.run()
+            elif self.current_tok == 'equal':
+                self.advance()
+                self.VariableCrea()
             else: 
                 print('no')
             if not self.tokens.is_empty():
