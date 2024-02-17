@@ -178,7 +178,12 @@ class Parser:
                 print('no')
         
         elif self.current_tok == 'cIszero':
-            pass    
+            self.advance()
+            if self.current_tok not in ['constant', 'variable']:
+                print('no')
+            self.advance()
+            if self.current_tok != 'right':
+                print('no')    
         
         elif self.current_tok == 'not':
             self.advance()
