@@ -66,17 +66,17 @@ def lexer(char):
             tokens.append('null') 
     elif char == 'if':
             tokens.append('conditional')
-    elif char == 'facing?':
+    elif char in ['facing?', 'facing-p']:
             tokens.append('cFacing')
-    elif char == 'blocked?':
+    elif char in ['blocked?', 'blocked-p']:
             tokens.append('cBlock') 
-    elif char == 'can-put?':
+    elif char == ['can-put?', 'can-put-p']:
             tokens.append('cCanput')
-    elif char == 'can-pick?':
+    elif char == ['can-pick?', 'can-pick-p']:
             tokens.append('cCanpick')
-    elif char == 'can-move?':
+    elif char == ['can-move?', 'can-move-p']:
             tokens.append('cCanmove')
-    elif char == 'isZero?':
+    elif char == ['isZero?', 'isZero-p']:
             tokens.append('cIszero')
     elif char == 'not':
             tokens.append('not') 
