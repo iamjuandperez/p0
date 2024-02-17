@@ -125,7 +125,7 @@ class Parser:
         if self.current_tok != 'number':
             print('no')
         odds = ['tLeft', 'tRight', 'tFront', 'tBack']
-        self.advance
+        self.advance()
         if self.current_tok not in odds:
             print('no')
         self.advance()
