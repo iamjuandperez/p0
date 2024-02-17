@@ -1,5 +1,7 @@
 import lexer as lex
 
+prueba = '(if (blocked-p) (move 1) (skip 3) (turn :left)'
+
 class Stack:
     def __init__(self):
         self.tokens = []
@@ -51,24 +53,53 @@ class Parser:
         return self.current_tok
     
     def defun(self): 
-        if self.current_tok != 'varName':
+        if self.current_tok not in ['varName', 'cBlock']:
             print('no')
         self.advance()
-        if self.current_tok  not in ['number', 'constant']:
+        if self.current_tok  != 'left':
             print('no')
         self.advance()
-        if self.current_tok  != 'right':
+        if self.current_tok  not in ['varName', 'right']:
+            print('no')
+        if self.current_tok == 'varName':
+            self.advance()
+            self.parametros()
+        elif self.current_tok == 'right':
+            self.advance()
+        if self.current_tok != 'left':
             print('no')
 
+        if self.tokens.next_token() in ['conditional', 'not']:
+            self.advance()
+            self.advance()
+            self.conditional()
+        else:
+            self.run()
+        self.advance()
+        if self.current_tok != 'right':
+            print('no')
+
+
+        
+    def parametros (self):
+        if self.current_tok == 'right':
+            self.advance()
+        else:
+            if self.current_tok != 'varName':
+                print('no')
+            else:
+                self.advance()
+                self.parametros()
+                
     def move(self):
-        if self.current_tok not in ['number', 'constant']:
+        if self.current_tok not in ['number', 'constant', 'varName']:
             print ('no')
         self.advance()
         if self.current_tok  != 'right':
             print('no')
 
     def skip(self):
-        if self.current_tok not in ['number', 'constant']:
+        if self.current_tok not in ['number', 'constant', 'varName']:
             print('no')
         self.advance()
         if self.current_tok  != 'right':
@@ -105,7 +136,7 @@ class Parser:
         if self.current_tok != 'object':
             print('no')
         self.advance()
-        if self.current_tok not in ['number', 'constant']:
+        if self.current_tok not in ['number', 'constant', 'varName']:
             print('no')
         self.advance()
         if self.current_tok != 'right':
@@ -115,14 +146,14 @@ class Parser:
         if self.current_tok != 'object':
             print('no')
         self.advance()
-        if self.current_tok not in ['number', 'constant']:
+        if self.current_tok not in ['number', 'constant', 'varName']:
             print('no')
         self.advance()
         if self.current_tok != 'right':
             print('no')
     
     def movedir(self):
-        if self.current_tok not in ['number', 'constant']:
+        if self.current_tok not in ['number', 'constant', 'varName']:
             print('no')
         odds = ['tLeft', 'tRight', 'tFront', 'tBack']
         self.advance()
@@ -133,7 +164,7 @@ class Parser:
             print('no')
     
     def moveFace(self):
-        if self.current_tok not in ['number', 'constant']:
+        if self.current_tok not in ['number', 'constant', 'varName']:
             print('no')
         self.advance()
         direcc = ['fNorth', 'fSouth', 'fEast', 'fWest']
@@ -171,7 +202,7 @@ class Parser:
             if self.current_tok != 'object':
                 print('no')
             self.advance()
-            if self.current_tok not in ['number', 'constant']:
+            if self.current_tok not in ['number', 'constant', 'varName']:
                 print('no')
             self.advance()
             if self.current_tok != 'right':
@@ -179,7 +210,7 @@ class Parser:
         
         elif self.current_tok == 'cIszero':
             self.advance()
-            if self.current_tok not in ['constant', 'variable']:
+            if self.current_tok not in ['number', 'constant', 'varName']:
                 print('no')
             self.advance()
             if self.current_tok != 'right':
@@ -188,7 +219,13 @@ class Parser:
         elif self.current_tok == 'not':
             self.advance()
             self.conditional()
+            self.advance()
+            if self.current_tok != 'right':
+                print('no')
         else:
+            print('no')
+
+        if self.current_tok != 'right':
             print('no')
         
     def VariableCrea(self):
@@ -202,7 +239,7 @@ class Parser:
         if self.current_tok != 'varName':
             print('no')
         self.advance()
-        if self.current_tok not in ['number', 'constant']:
+        if self.current_tok not in ['number', 'constant', 'varName']:
             print('no')
         self.advance()
         if self.current_tok != 'right':
@@ -217,7 +254,7 @@ class Parser:
             if self.current_tok == 'defun':
                self.advance()
                self.defun()
-            if self.current_tok == 'defvar':
+            elif self.current_tok == 'defvar':
                 self.advance()
                 self.defvar()
             elif self.current_tok == 'move':
@@ -253,14 +290,13 @@ class Parser:
             elif self.current_tok == 'conditional':
                 self.advance()
                 self.conditional()
-                self.advance()
-                self.run()
+                
             elif self.current_tok == 'equal':
                 self.advance()
                 self.VariableCrea()
             else: 
                 print('no')
-            if not self.tokens.is_empty():
+            if not self.tokens.is_empty() and self.current_tok != 'left':
                self.advance()
                
                
@@ -270,5 +306,5 @@ def run (text):
     lexer = lex.iniciar(text)
     Parser(lexer)
 
-run("(defvar rotate 3)")
+run(prueba)
     

@@ -70,13 +70,13 @@ def lexer(char):
             tokens.append('cFacing')
     elif char in ['blocked?', 'blocked-p']:
             tokens.append('cBlock') 
-    elif char == ['can-put?', 'can-put-p']:
+    elif char in ['can-put?', 'can-put-p']:
             tokens.append('cCanput')
-    elif char == ['can-pick?', 'can-pick-p']:
+    elif char in ['can-pick?', 'can-pick-p']:
             tokens.append('cCanpick')
-    elif char == ['can-move?', 'can-move-p']:
+    elif char in ['can-move?', 'can-move-p']:
             tokens.append('cCanmove')
-    elif char == ['isZero?', 'isZero-p']:
+    elif char in ['isZero?', 'isZero-p']:
             tokens.append('cIszero')
     elif char == 'not':
             tokens.append('not') 
