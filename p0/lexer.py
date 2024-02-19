@@ -1,93 +1,142 @@
 tokens = []
 
+
 def lexer(char):
+    
     
     if char.isdigit():
         tokens.append("number")
+        
     elif char == '(':
-            tokens.append('left')
+        tokens.append('left')
+        
     elif char == ')':
-            tokens.append('right')
+        tokens.append('right')
+        
     elif char == '=':
-            tokens.append('equal')
+        tokens.append('equal')
+        
     elif char == 'defvar':
-            tokens.append('defvar')
+        tokens.append('defvar')
+        
     elif char == 'skip':
-            tokens.append('skip')
+        tokens.append('skip')
+        
     elif char == 'turn':
-            tokens.append('turn')
+        tokens.append('turn')
+        
     elif char == ':left':
-            tokens.append('tLeft')
+        tokens.append('tLeft')
+        
     elif char == ':right':
-            tokens.append('tRight')
+        tokens.append('tRight')
+        
     elif char == ':around':
-            tokens.append('tAround')
+        tokens.append('tAround')
+        
     elif char == 'face':
-            tokens.append('face')
+        tokens.append('face')
+        
     elif char == ':north':
-            tokens.append('fNorth')
+        tokens.append('fNorth')
+        
     elif char == ':south':
-            tokens.append('fSouth')
+        tokens.append('fSouth')
+        
     elif char == ':east':
-            tokens.append('fEast')
+        tokens.append('fEast')
+        
     elif char == ':west':
-            tokens.append('fWest')
-    elif char == 'turn':
-            tokens.append('turn')
+        tokens.append('fWest')
+        
     elif char == 'left':
-            tokens.append('tLeft')
+        tokens.append('tLeft')
+        
     elif char == 'right':
-            tokens.append('tRight')
+        tokens.append('tRight')
+        
     elif char == 'around':
-            tokens.append('around')    
+        tokens.append('around') 
+           
     elif char == 'defun':
-            tokens.append('defun')
+        tokens.append('defun')
+        
     elif char == ':balloons' or char == ':chips':
-            tokens.append('object')
+        tokens.append('object')
+        
     elif char == ':front':
-            tokens.append('tFront')
+        tokens.append('tFront')
+        
     elif char == ':back':
-            tokens.append('tBack')
+        tokens.append('tBack')
+        
     elif char == ':up':
-           tokens.append('tUp')
+        tokens.append('tUp')
+        
     elif char == ':down':
-           tokens.append('tDown')
+        tokens.append('tDown')
+        
+    elif char == 'put':
+        tokens.append('put')  
+          
     elif char == 'run-dirs':
-           tokens.append('rundirs')
+        tokens.append('rundirs')
+        
     elif char == 'move':
-           tokens.append('move')
+        tokens.append('move')
+        
     elif char == 'pick':
-            tokens.append('pick')
+        tokens.append('pick')
+        
     elif char == 'move-dir':
-            tokens.append('moveDir')
+        tokens.append('moveDir')
+        
     elif char == 'move-face':
-            tokens.append('moveFace')
+        tokens.append('moveFace')
+        
     elif char == 'null':
-            tokens.append('null') 
+        tokens.append('null') 
+        
     elif char == 'if':
-            tokens.append('conditional')
+        tokens.append('conditional')
+        
     elif char in ['facing?', 'facing-p']:
-            tokens.append('cFacing')
+        tokens.append('cFacing')
+        
     elif char in ['blocked?', 'blocked-p']:
-            tokens.append('cBlock') 
+        tokens.append('cBlock') 
+        
     elif char in ['can-put?', 'can-put-p']:
-            tokens.append('cCanput')
+        tokens.append('cCanput')
+        
     elif char in ['can-pick?', 'can-pick-p']:
-            tokens.append('cCanpick')
+        tokens.append('cCanpick')
+        
     elif char in ['can-move?', 'can-move-p']:
-            tokens.append('cCanmove')
+        tokens.append('cCanmove')
+        
     elif char in ['isZero?', 'isZero-p']:
-            tokens.append('cIszero')
+        tokens.append('cIszero')
+        
     elif char == 'not':
-            tokens.append('not') 
+        tokens.append('not') 
+        
     elif char in ['Dim', 'myXpos', 'myYpos', 'myChips',
                   'myBalloons', 'balloonsHere', 'ChipsHere',
                   'Spaces']:
-            tokens.append('constant')                                                      
+        tokens.append('constant')    
+        
+    elif char == 'loop':
+        tokens.append('loop')
+        
+    elif char == 'repeat':
+        tokens.append('repeat')   
+                                                                   
     else:
-            tokens.append('varName')
+        tokens.append('varName')
 
     return tokens
+ 
         
 def separador (texto : str ):
     
@@ -99,16 +148,16 @@ def separador (texto : str ):
     
 
     texto = texto.replace('(', ' ( ').replace(')', ' ) ')
-    
-    
     palabras = texto.split()
     
     return palabras
-
-    
+  
 
 def iniciar(cadena):
+        
+        
     tok = separador(cadena)
     for i in tok:
        lexer(i)
+       
     return tokens
