@@ -1,6 +1,6 @@
 import lexer as lex
 
-prueba = '(if (blocked-p) (move 1) (skip 3) (turn :left)'
+prueba = '((if (blocked-p) (move 1) (skip 3) (turn :left))'
 
 class Stack:
     def __init__(self):
@@ -16,7 +16,7 @@ class Stack:
         if not self.is_empty():
             return self.tokens.pop()
         else:
-            raise IndexError("The stack is empty")
+            exit()
         
     def next_token(self):
         if not self.is_empty() and len(self.tokens) > 1:
@@ -248,7 +248,13 @@ class Parser:
     def run (self):
         while not self.tokens.is_empty():
            
-            if self.current_tok != 'left':
+            if self.tokens.next_token() == 'left':
+                self.advance()
+                self.run()
+                self.advance()
+                if self.current_tok != 'right':
+                    print('no')
+            elif self.current_tok != 'left':
                print ('no')
             self.advance()
             if self.current_tok == 'defun':
