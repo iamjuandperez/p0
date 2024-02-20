@@ -1,9 +1,6 @@
 import lexer as lex
 
 
-prueba = ''
-
-
 class Stack:
     
     
@@ -318,8 +315,6 @@ class Parser:
             
         else:
             print('no')
-
-        self.advance()
 
         if self.current_tok != 'right':
             print('no')
