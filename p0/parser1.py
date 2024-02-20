@@ -482,5 +482,6 @@ def run (text):
     lexer = lex.iniciar(text)
     Parser(lexer)
 
+prueba = '(if (blocked-p) (move 1) (skip 3))'
+
 run(prueba)
-    
