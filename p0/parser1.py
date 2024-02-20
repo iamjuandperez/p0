@@ -49,6 +49,7 @@ class Parser:
     def __init__(self, tokens):
         self.tokens = array_to_stack(tokens)
         self.tok_idx = 1
+        self.correcto = True
        
         self.advance()
         self.run()
@@ -62,15 +63,19 @@ class Parser:
         
         if self.current_tok not in ['varName', 'cBlock']:
             print('no')
+            self.correcto = False
+            
         self.advance()
         
         if self.current_tok  != 'left':
             print('no')
+            self.correcto = False
             
         self.advance()
         
         if self.current_tok  not in ['varName', 'right']:
             print('no')
+            self.correcto = False
             
         if self.current_tok == 'varName':
             self.advance()
@@ -81,6 +86,7 @@ class Parser:
             
         if self.current_tok != 'left':
             print('no')
+            self.correcto = False
 
         if self.tokens.next_token() in ['conditional', 'not']:
             self.advance()
@@ -97,6 +103,7 @@ class Parser:
             
         elif self.current_tok != 'right':
             print('no')
+            self.correcto = False
         
         
     def parametros (self):
@@ -107,6 +114,7 @@ class Parser:
         else:
             if self.current_tok != 'varName':
                 print('no')
+                self.correcto = False
                 
             else:
                 self.advance()
@@ -118,11 +126,13 @@ class Parser:
         var = ['number', 'constant', 'varName']
         if self.current_tok not in var:
             print ('no')
+            self.correcto = False
             
         self.advance()
         
         if self.current_tok  != 'right':
             print('no')
+            self.correcto = False
 
 
     def skip(self):
@@ -130,11 +140,13 @@ class Parser:
         var = ['number', 'constant', 'varName']
         if self.current_tok not in var:
             print('no')
+            self.correcto = False
             
         self.advance()
         
         if self.current_tok  != 'right':
-            print('nop')
+            print('no')
+            self.correcto = False
     
     
     def rundirs(self):
@@ -142,6 +154,7 @@ class Parser:
         odds = ['tUp', 'tRight', 'tLeft', 'tDown']
         if self.current_tok not in odds:
             print('no')
+            self.correcto = False
             
         self.advance()
         
@@ -152,6 +165,7 @@ class Parser:
         
         if self.current_tok != 'right':
             print('no')
+            self.correcto = False
     
     
     def face(self):
@@ -159,11 +173,13 @@ class Parser:
         direcc = ['fNorth', 'fSouth', 'fEast', 'fWest']
         if self.current_tok not in direcc:
             print('no')
+            self.correcto = False
             
         self.advance()
         
         if self.current_tok != 'right':
             print('no')
+            self.correcto = False
     
     
     def turn(self):
@@ -171,45 +187,53 @@ class Parser:
         odds = ['tLeft', 'tRight', 'tAround']
         if self.current_tok not in odds:
             print('no')
+            self.correcto = False
             
         self.advance()
         
         if self.current_tok != 'right':
             print('no')
+            self.correcto = False
             
             
     def put(self):
         
         if self.current_tok != 'object':
             print('no')
+            self.correcto = False
             
         self.advance()
         
         var = ['number', 'constant', 'varName']
         if self.current_tok not in var:
             print('no')
+            self.correcto = False
             
         self.advance()
         
         if self.current_tok != 'right':
             print('no')
+            self.correcto = False
         
             
     def pick(self):
         
         if self.current_tok != 'object':
             print('no')
+            self.correcto = False
             
         self.advance()
         
         var = ['number', 'constant', 'varName']
         if self.current_tok not in var:
             print('no')
+            self.correcto = False
             
         self.advance()
         
         if self.current_tok != 'right':
             print('no')
+            self.correcto = False
     
     
     def movedir(self):
@@ -217,17 +241,20 @@ class Parser:
         var = ['number', 'constant', 'varName']
         if self.current_tok not in var:
             print('no')
+            self.correcto = False
             
         self.advance()
         
         odds = ['tLeft', 'tRight', 'tFront', 'tBack']
         if self.current_tok not in odds:
             print('no')
+            self.correcto = False
             
         self.advance()
         
         if self.current_tok != 'right':
             print('no')
+            self.correcto = False
     
     
     def moveFace(self):
@@ -235,29 +262,34 @@ class Parser:
         var = ['number', 'constant', 'varName']
         if self.current_tok not in var:
             print('no')
+            self.correcto = False
             
         self.advance()
         
         direcc = ['fNorth', 'fSouth', 'fEast', 'fWest']
         if self.current_tok not in direcc:
             print('no')
+            self.correcto = False
             
         self.advance()
         
         if self.current_tok != 'right':
             print('no')
+            self.correcto = False
     
     
     def nulo(self):
         
         if self.current_tok != 'right':
             print('no')
+            self.correcto = False
     
     
     def conditional(self):
         
         if self.current_tok != 'left':
             print('no')
+            self.correcto = False
             
         self.advance()
         
@@ -268,34 +300,40 @@ class Parser:
             
             if self.current_tok not in direcc:
                 print('no')
+                self.correcto = False
                 
             self.advance()
             
             if self.current_tok != 'right':
                 print('no')
+                self.correcto = False
                 
         elif self.current_tok == 'cBlock':
             self.advance()
             
             if self.current_tok != 'right':
                 print('no')
+                self.correcto = False
         
         elif self.current_tok in ['cCanput', 'cCanpick']:
             self.advance()
             
             if self.current_tok != 'object':
                 print('no')
+                self.correcto = False
                 
             self.advance()
             
             var = ['number', 'constant', 'varName']
             if self.current_tok not in var:
                 print('no')
+                self.correcto = False
                 
             self.advance()
             
             if self.current_tok != 'right':
                 print('no')
+                self.correcto = False
         
         elif self.current_tok == 'cIszero':
             self.advance()
@@ -303,11 +341,13 @@ class Parser:
             var = ['number', 'constant', 'varName']
             if self.current_tok not in var:
                 print('no')
+                self.correcto = False
                 
             self.advance()
             
             if self.current_tok != 'right':
-                print('no')    
+                print('no')  
+                self.correcto = False  
         
         elif self.current_tok == 'not':
             self.advance()
@@ -315,37 +355,44 @@ class Parser:
             
         else:
             print('no')
+            self.correcto = False
 
         if self.current_tok != 'right':
             print('no')
+            self.correcto = False
         
         
     def VariableCrea(self):
         
         if self.current_tok != 'varName':
-             print('no')
+            print('no')
+            self.correcto = False
              
         self.advance()
         
         if self.current_tok != 'right':
             print('no')
+            self.correcto = False
     
     
     def defvar(self):
         
         if self.current_tok != 'varName':
             print('no')
+            self.correcto = False
             
         self.advance()
         
         var = ['number', 'constant', 'varName']
         if self.current_tok not in var:
             print('no')
+            self.correcto = False
             
         self.advance()
         
         if self.current_tok != 'right':
             print('no')
+            self.correcto = False
     
     
     def loop(self):
@@ -356,6 +403,7 @@ class Parser:
             ]
         if self.current_tok not in condit:
             print('no')
+            self.correcto = False
             
         self.advance()
         self.run()
@@ -366,6 +414,7 @@ class Parser:
         var = ['number', 'constant', 'varName']
         if self.current_tok not in var:
             print('no')
+            self.correcto = False
             
         self.advance()
         self.run()
@@ -383,11 +432,12 @@ class Parser:
             
         else:
             print('no')
+            self.correcto = False
 
 
     def run(self):
         
-        while not self.tokens.is_empty():
+        while not self.tokens.is_empty() and self.correcto:
            
             if self.tokens.next_token() == 'left':
                 self.advance()
@@ -396,9 +446,11 @@ class Parser:
                 
                 if self.current_tok != 'right':
                     print('no')
+                    self.correcto = False
                     
             elif self.current_tok != 'left':
                print ('no')
+               self.correcto = False
                
             self.advance()
             
@@ -472,9 +524,14 @@ class Parser:
             
             else: 
                 print('no')
+                self.correcto = False
                 
             if not self.tokens.is_empty() and self.current_tok != 'left':
                self.advance()
+        
+        if self.correcto:
+            print('yes')
+        
                
     
 def run (text):
